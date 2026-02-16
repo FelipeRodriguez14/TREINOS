@@ -8,10 +8,9 @@ import views.MenuServices;
 public class Main {
     
     public static void main(String[] args){
-        new UserService();
+        new UserService().initStock();
         new LibraryService();
-        new MenuServices().menuAdmin(new User("felipe","123",true));
-        
+        new MenuServices().menuIniciar();
 
     }
 
