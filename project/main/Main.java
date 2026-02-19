@@ -1,5 +1,4 @@
 package main;
-import entity.User;
 import service.LibraryService;
 import service.UserService;
 import views.MenuServices;

@@ -4,13 +4,15 @@ public class User {
     private String nome;
     private String senha;
     private boolean admin;
+    private int id;
 
     public User(){}
 
-    public User(String nome, String senha, boolean admin){
+    public User(int id, String nome, String senha, boolean admin){
         this.nome = nome;
         this.senha = senha;
         this.admin = admin;
+        this.id = id;
     }
 
     public void setNome(String nome){
@@ -36,6 +38,14 @@ public class User {
 
     public boolean getAdmin(){
         return this.admin;
+    }
+
+    public int getId(){
+        return this.id; 
+    }
+
+    public void setId(int i){
+        this.id = i;
     }
 
 }

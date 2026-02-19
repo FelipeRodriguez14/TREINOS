@@ -2,30 +2,28 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
 import entity.User;
 import exceptions.UserNotFoundException;
 import views.menus.MainIniciar;
 
 public class UserService {
     
-    private List<User> usuarios = new ArrayList<User>();
+    private static List<User> usuarios = new ArrayList<User>();
 
     public UserService(){
-        initStock();
+        
     }
 
     public void initStock(){
-        this.usuarios.add(new User("felipe","123", true));
-        this.usuarios.add(new User("bia","123", false));
-        this.usuarios.add(new User("ana","123", false));
+        usuarios.add(new User(1,"felipe","123", true));
+        usuarios.add(new User(2,"bia","123", false));
+        usuarios.add(new User(3,"ana","123", false));
     }
 
     //Listar todos os usuários.
     public List<User> getAllUsers(){
-        return this.usuarios;
+        return usuarios;
     }
 
     //Buscar usuário por nome.
@@ -37,6 +35,20 @@ public class UserService {
         }
         throw new UserNotFoundException("USUÁRIO NÃO ENCONTRADO");
 
+    }
+
+    //Buscar usuário por id.
+    public String getUserId(int id){
+        List<User> users = new ArrayList<User>();
+        for(User user : usuarios){
+            if(user.getId() == id){
+                users.add(user);
+            }
+        }
+        if(users.isEmpty()){
+            throw new UserNotFoundException("USUÁRIO NÃO ENCONTRADO");
+        }
+        return new ListToString().userToString(users);
     }
 
     //Listar usuários por tipo de acesso.
@@ -55,19 +67,22 @@ public class UserService {
 
     //Alterar usuario
     public void setMyUser(User user, String nome, String senha, boolean admin){
+        System.out.println(user.getNome());
+        System.out.println(user.getSenha());
+        System.out.println(user.getAdmin());
         for(User usuario : usuarios ){
             if(
                 usuario.getNome().equalsIgnoreCase(user.getNome()) &&
                 usuario.getSenha().equals(user.getSenha()) &&
                 usuario.getAdmin() == user.getAdmin()
             ){
-                user.setNome(nome);
-                user.setSenha(senha);
-                user.setAdmin(admin);
+                usuario.setNome(nome);
+                usuario.setSenha(senha);
+                usuario.setAdmin(admin);
 
                 JOptionPane.showMessageDialog(
                     null,
-                    "CREDENCIAIS ALTERADAS. O SISTEMA PARA A TELA DE LOGIN.\n\n" +
+                    "CREDENCIAIS ALTERADAS. O SISTEMA IRÁ PARA A TELA DE LOGIN.\n\n" +
                     "FAÇA LOGIN COM AS NOVAS CREDENCIAIS."
                     ,
                     senha,
