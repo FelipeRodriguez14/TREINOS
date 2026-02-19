@@ -1,11 +1,11 @@
-package views.menus;
+package biblioteca.views.menus;
 
 import java.util.ArrayList;
 import java.util.List;
-import entity.User;
-import service.LibraryService;
-import service.UserService;
-import views.menus.utilitys.IterationsMenu;
+import biblioteca.entity.User;
+import biblioteca.service.LibraryService;
+import biblioteca.service.UserService;
+import biblioteca.views.menus.utilitys.IterationsMenu;
 
 public class MainAdmin {
     private User admin = new User();

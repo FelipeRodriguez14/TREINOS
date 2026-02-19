@@ -1,4 +1,4 @@
-package exceptions;
+package biblioteca.exceptions;
 
 import javax.swing.JOptionPane;
 

@@ -1,16 +1,16 @@
-package views.menus.utilitys;
+package biblioteca.views.menus.utilitys;
 
 import javax.swing.JOptionPane;
 
-import service.LibraryService;
-import views.menus.MainAdmin;
+import biblioteca.service.LibraryService;
+import biblioteca.views.menus.MainAdmin;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import entity.User;
+import biblioteca.entity.User;
 
 import java.awt.GridLayout;
 

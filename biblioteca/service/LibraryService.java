@@ -1,8 +1,8 @@
-package service;
+package biblioteca.service;
 import java.util.ArrayList;
 import java.util.List;
-import entity.Livro;
-import exceptions.LivroNotFoundException;
+import biblioteca.entity.Livro;
+import biblioteca.exceptions.LivroNotFoundException;
 public class LibraryService {
 
     private List<Livro> livros = new ArrayList<Livro>();

@@ -1,11 +1,11 @@
-package service;
+package biblioteca.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import entity.User;
-import exceptions.UserNotFoundException;
-import views.menus.MainIniciar;
+import biblioteca.entity.User;
+import biblioteca.exceptions.UserNotFoundException;
+import biblioteca.views.menus.MainIniciar;
 
 public class UserService {
     

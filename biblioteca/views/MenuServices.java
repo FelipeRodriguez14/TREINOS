@@ -1,8 +1,8 @@
-package views;
-import entity.User;
-import views.menus.MainAdmin;
-import views.menus.MainIniciar;
-import views.menus.MainUser;
+package biblioteca.views;
+import biblioteca.entity.User;
+import biblioteca.views.menus.MainAdmin;
+import biblioteca.views.menus.MainIniciar;
+import biblioteca.views.menus.MainUser;
 
 public class MenuServices{
     User user;

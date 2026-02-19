@@ -1,8 +1,8 @@
-package views.menus;
+package biblioteca.views.menus;
 
 import javax.swing.JOptionPane;
 
-import views.auth.Login;
+import biblioteca.views.auth.Login;
 
 public class MainIniciar {
 

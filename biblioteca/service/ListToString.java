@@ -1,8 +1,8 @@
-package service;
+package biblioteca.service;
 
 import java.util.List;
-import entity.Livro;
-import entity.User;
+import biblioteca.entity.Livro;
+import biblioteca.entity.User;
 
 public class ListToString {
 

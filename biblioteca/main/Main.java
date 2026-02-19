@@ -1,7 +1,7 @@
-package main;
-import service.LibraryService;
-import service.UserService;
-import views.MenuServices;
+package biblioteca.main;
+import biblioteca.service.LibraryService;
+import biblioteca.service.UserService;
+import biblioteca.views.MenuServices;
 
 
 public class Main {

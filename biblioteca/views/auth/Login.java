@@ -1,4 +1,4 @@
-package views.auth;
+package biblioteca.views.auth;
 
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -6,12 +6,12 @@ import javax.swing.JTextField;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import entity.User;
-import exceptions.UserNotFoundException;
-import views.MenuServices;
-import views.menus.MainIniciar;
+import biblioteca.entity.User;
+import biblioteca.exceptions.UserNotFoundException;
+import biblioteca.views.MenuServices;
+import biblioteca.views.menus.MainIniciar;
 import java.util.List;
-import service.UserService;
+import biblioteca.service.UserService;
 
 public class Login {
     private JPanel panel = new JPanel(new GridLayout(0,1));

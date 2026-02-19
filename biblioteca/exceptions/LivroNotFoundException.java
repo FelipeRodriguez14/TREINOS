@@ -1,4 +1,4 @@
-package exceptions;
+package biblioteca.exceptions;
 
 public class LivroNotFoundException extends RuntimeException {
 

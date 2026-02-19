@@ -1,4 +1,4 @@
-package entity;
+package biblioteca.entity;
 public class Livro{
 
     private String titulo;
