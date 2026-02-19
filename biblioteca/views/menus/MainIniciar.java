@@ -44,7 +44,6 @@ public class MainIniciar {
                     break;
             
                 case 2:
-                    JOptionPane.showMessageDialog(null, "OPERAÇÃO CANCELADA. VOLTE SEMPRE !", null, 1);
                     System.exit(0);
                     break;
                 }

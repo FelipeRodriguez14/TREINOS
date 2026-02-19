@@ -2,19 +2,15 @@ package biblioteca.views.menus;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import biblioteca.entity.User;
 import biblioteca.service.LibraryService;
 import biblioteca.service.UserService;
 import biblioteca.views.menus.utilitys.IterationsMenu;
+import biblioteca.entity.Livro;
 
 public class MainAdmin {
     private User admin = new User();
-
-    public MainAdmin(User user){
-        this.admin = user;
-    }
-    public MainAdmin(){}
-
     private IterationsMenu menuIterativo = new IterationsMenu();
     private LibraryService lib = new LibraryService();
     private UserService users = new UserService();
@@ -22,6 +18,13 @@ public class MainAdmin {
     private String[] op;
     private int action;
 
+    public MainAdmin(){}
+
+    public MainAdmin(User user){
+        this.admin = user;
+    }
+
+    //Menu principal
     public void initHome(){
         msg.add("USUÁRIOS COMUNS.");
         msg.add("ADMINISTRADORES");
@@ -51,7 +54,8 @@ public class MainAdmin {
                 break;
         }
     }
-
+    
+    //Menu para tratar os usuários do sistema
     private void usuarios(){
         msg.add("ALTERAR USUÁRIO");
         msg.add("EXCLUIR USUÁRIO");
@@ -80,6 +84,7 @@ public class MainAdmin {
         }
     }
 
+    //Menu para tratar os outros admins do sistema
     private void admins(){
         msg.add("ALTERAR ADMINISTRADOR");
         msg.add("EXCLUIR ADMINISTRADOR");
@@ -107,7 +112,8 @@ public class MainAdmin {
                 break;
         }
     }
-        
+    
+    //Menu para tratar os livros do sistema
     private void livros(){
         msg.add("ALTERAR LIVRO");
         msg.add("EXCLUIR LIVRO");
@@ -117,16 +123,35 @@ public class MainAdmin {
         msg.clear();
 
         action = menuIterativo.choose(op, lib.getAllLivros());
+        String titulo;
+        String autor = "";
+        float price;
 
         switch (action) {
             case 0:
+                msg.add("OK");
+                msg.add("MANTER ATUAL");
+                msg.add("CANCELAR");
+                op = msg.toArray(new String[0]);
+                msg.clear();
                 
+                String alterarLivro = JOptionPane.showInputDialog("QUAL O NOME DO LIVRO QUE DESEJA ALTERAR ?");
+                Livro novoLivro = new IterationsMenu().newCredenciaisLivro(op);
+                lib.alterLivro(alterarLivro, novoLivro.getTitulo(), novoLivro.getAutor(), novoLivro.getPrice());
+                initHome();
                 break;
             case 1:
-                
+                titulo =  JOptionPane.showInputDialog("QUAL O TÍTULO DO LIVRO ?");
+                lib.deleteLivro(titulo);
+                initHome();
                 break;
             case 2:
+                titulo =  JOptionPane.showInputDialog("QUAL O TÍTULO DO LIVRO ?");
+                autor = JOptionPane.showInputDialog("QUAL O AUTOR DO LIVRO ?");
+                price = Math.round(Float.parseFloat(JOptionPane.showInputDialog("QUAL O PREÇO DO LIVRO ?")));
                 
+                lib.createLivro(new Livro(titulo,autor,true,price));
+                initHome();
                 break;
             case 3:
                 initHome();
@@ -135,14 +160,15 @@ public class MainAdmin {
                 break;
         }
     }
-        
+    
+    //Menu para alterar o próprio cadastro
     private void alterCadastro(){
         msg.add("OK");
         msg.add("MANTER O ATUAL.");
         msg.add("CANCELAR");
         op = msg.toArray(new String[0]);
         msg.clear();
-        User newUser = new IterationsMenu().newCredenciais(op);
+        User newUser = new IterationsMenu().newCredenciaisAdmin(op);
         users.setMyUser
         (
             admin, 
@@ -152,6 +178,7 @@ public class MainAdmin {
         );
     }
 
+    //Método para retornar ao menu de início
     private void goBack(){
         new MainIniciar(false);
     }

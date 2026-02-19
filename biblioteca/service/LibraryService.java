@@ -1,29 +1,31 @@
 package biblioteca.service;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import biblioteca.entity.User;
 import biblioteca.entity.Livro;
 import biblioteca.exceptions.LivroNotFoundException;
+import biblioteca.views.menus.MainAdmin;
+import biblioteca.views.menus.MainIniciar;
 public class LibraryService {
 
-    private List<Livro> livros = new ArrayList<Livro>();
+    private static List<Livro> livros = new ArrayList<Livro>();
 
     //Construtor que inicia a biblioteca alimentada.
-    public LibraryService(){
-        initStock();
-    }
+    public LibraryService(){}
 
     //Alimentar a biblioteca
     public void initStock(){
-        this.livros.add(new Livro("O Código Fantasma", "Alan Turing", true, 45.90));
-        this.livros.add(new Livro("Java: Do Zero ao Herói", "Bruno Souza", true, 89.90));
-        this.livros.add(new Livro("Algoritmos da Felicidade", "Ada Lovelace", true, 35.00));
-        this.livros.add(new Livro("O Mistério do Objeto Perdido", "Sherlock Holmes", true, 29.90));
-        this.livros.add(new Livro("Herança Maldita", "Robert Martin", true, 110.00));
-        this.livros.add(new Livro("Compilando Sonhos", "Grace Hopper", true, 52.50));
-        this.livros.add(new Livro("A Lógica do Caos", "Edward Lorenz", true, 41.00));
-        this.livros.add(new Livro("Interfaces do Destino", "Margaret Hamilton", true, 64.90));
-        this.livros.add(new Livro("Recursividade Infinita", "Douglas Hofstadter", true, 78.00));
-        this.livros.add(new Livro("O Último Byte", "Isaac Asimov", true, 39.90));
+        livros.add(new Livro("O Código Fantasma", "Alan Turing", true, 45.90));
+        livros.add(new Livro("Java: Do Zero ao Herói", "Bruno Souza", true, 89.90));
+        livros.add(new Livro("Algoritmos da Felicidade", "Ada Lovelace", true, 35.00));
+        livros.add(new Livro("O Mistério do Objeto Perdido", "Sherlock Holmes", true, 29.90));
+        livros.add(new Livro("Herança Maldita", "Robert Martin", true, 110.00));
+        livros.add(new Livro("Compilando Sonhos", "Grace Hopper", true, 52.50));
+        livros.add(new Livro("A Lógica do Caos", "Edward Lorenz", true, 41.00));
+        livros.add(new Livro("Interfaces do Destino", "Margaret Hamilton", true, 64.90));
+        livros.add(new Livro("Recursividade Infinita", "Douglas Hofstadter", true, 78.00));
+        livros.add(new Livro("O Último Byte", "Isaac Asimov", true, 39.90));
     }
 
     //Listar todos os livros disponíveis.
@@ -41,11 +43,11 @@ public class LibraryService {
         return new ListToString().libraryToString(livrosDisponiveis);
     }
 
-    //Buscar livros pelo nome.
-    public String getLivro(String nome){
+    //Buscar livros pelo titulo.
+    public String getLivro(String titulo){
         List<Livro> livrosDisponiveis = new ArrayList<Livro>();
         for(Livro livro: livros){
-            if(livro.getTitulo().equalsIgnoreCase(nome)){
+            if(livro.getTitulo().equalsIgnoreCase(titulo)){
                 livrosDisponiveis.add(livro);
             }
         }
@@ -73,6 +75,7 @@ public class LibraryService {
 
     //Buscar livros pelo preço
     public String getLivrosPrice(double price){
+
         List<Livro> livrosDisponiveis = new ArrayList<Livro>();
         for(Livro livro : livros){
             if(livro.getPrice() == price){
@@ -83,9 +86,45 @@ public class LibraryService {
             throw new LivroNotFoundException("NÃO HÁ LIVROS COM ESSE VALOR.");
         }
         return new ListToString().libraryToString(livrosDisponiveis);
-    } 
+    }
+    
+    //Cadastrar um novo livro
+    public void createLivro(Livro livro){
+        for(Livro lv : livros){
+            if(lv.getTitulo().equalsIgnoreCase(livro.getTitulo())){
+                JOptionPane.showMessageDialog(null, "LIVRO JÁ CADASTRADO. !","ERRO", 0);
+                return;
+            }
+        }
+        livros.add(livro);
+        JOptionPane.showMessageDialog(null, "LIVRO CADASTRADO!", "SUCESSO", 1);
+        System.out.println(livros.size());
+    }
 
+    //Remover um livro cadastrado do sistema
+    public void deleteLivro(String titulo){
+        for(int i = 0; i < (livros.size()-1);i++){
+            if(livros.get(i).getTitulo().equalsIgnoreCase(titulo)){
+                livros.remove(i);
+                JOptionPane.showMessageDialog(null, "LIVRO REMOVIDO !","SUCESSO", 1);
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "LIVRO NÃO ENCONTRADO !", "ERRO", 0);
 
+    }
 
-
+    //Método para alterar os dados do livro
+    public void alterLivro(String livro, String newTitulo, String newAutor, double price){
+        for(Livro lv : livros){
+            if(lv.getTitulo().equalsIgnoreCase(livro)){
+                lv.setTitulo(newTitulo);
+                lv.setAutor(newAutor);
+                lv.setPrice(price);
+                JOptionPane.showMessageDialog(null, "LIVRO ALTERADO !", "SUCESSO", 1);
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "LIVRO NÃO ENCONTRADO !", "ERRO", 0);
+    }
 }

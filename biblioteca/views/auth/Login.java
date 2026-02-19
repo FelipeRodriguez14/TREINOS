@@ -18,10 +18,12 @@ public class Login {
     private JTextField campoUser = new JTextField();
     private JPasswordField campoSenha = new JPasswordField();
 
+    //Construtor
     public Login(boolean admin){
         init(admin);
     }
 
+    //Menu de Login
     public void init(boolean admin){
         panel.add(new JLabel("Usuário: "));
         panel.add(campoUser);
@@ -42,6 +44,7 @@ public class Login {
         }
     }
 
+    //Método para verificar o tipo de login do usuário e validar a autenticação.
     private void autenticar(String nome, String senha, boolean admin){
         List<User> usuarios = new UserService().getAllUsers();
         for(User usuario : usuarios){
@@ -57,6 +60,7 @@ public class Login {
         throw new UserNotFoundException("USUÁRIO NÃO CADASTRADO. SOLICITE QUE UM ADMINISTRADOR CADASTRE VOCÊ.");
     }
 
+    //Método que vai direcionar o próximo menu de acordo com o tipo de login do usuário.
     private void direction(boolean admin, User user){
         if(admin){
             new MenuServices(user).menuAdmin();

@@ -11,9 +11,7 @@ public class UserService {
     
     private static List<User> usuarios = new ArrayList<User>();
 
-    public UserService(){
-        
-    }
+    public UserService(){}
 
     public void initStock(){
         usuarios.add(new User(1,"felipe","123", true));
@@ -65,11 +63,8 @@ public class UserService {
         return new ListToString().userToString(users);
     }
 
-    //Alterar usuario
+    //Função que permite o administrador alterar o próprio usuário
     public void setMyUser(User user, String nome, String senha, boolean admin){
-        System.out.println(user.getNome());
-        System.out.println(user.getSenha());
-        System.out.println(user.getAdmin());
         for(User usuario : usuarios ){
             if(
                 usuario.getNome().equalsIgnoreCase(user.getNome()) &&
