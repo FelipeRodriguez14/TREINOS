@@ -2,11 +2,9 @@ package biblioteca.service;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import biblioteca.entity.User;
 import biblioteca.entity.Livro;
 import biblioteca.exceptions.LivroNotFoundException;
-import biblioteca.views.menus.MainAdmin;
-import biblioteca.views.menus.MainIniciar;
+import biblioteca.views.menus.utilitys.IterationsMenu;
 public class LibraryService {
 
     private static List<Livro> livros = new ArrayList<Livro>();
@@ -43,7 +41,7 @@ public class LibraryService {
         return new ListToString().libraryToString(livrosDisponiveis);
     }
 
-    //Buscar livros pelo titulo.
+    //Retorna uma String com todos os livros encontrados
     public String getLivro(String titulo){
         List<Livro> livrosDisponiveis = new ArrayList<Livro>();
         for(Livro livro: livros){
@@ -56,6 +54,18 @@ public class LibraryService {
             throw new LivroNotFoundException("NÃO HÁ LIVROS DISPONÍVEIS.");
         }
         return new ListToString().libraryToString(livrosDisponiveis);
+    }
+
+    //Retorna o objeto Livro que foi encontrado
+    public Livro getLivroObject(String titulo){
+        Livro livroEncontrado = new Livro();
+        for(Livro livro: livros){
+            if(livro.getTitulo().equalsIgnoreCase(titulo)){
+                livroEncontrado = livro;
+            }
+        }
+
+        return livroEncontrado;
     }
 
     //Buscar livros pelo autor.
@@ -103,7 +113,7 @@ public class LibraryService {
 
     //Remover um livro cadastrado do sistema
     public void deleteLivro(String titulo){
-        for(int i = 0; i < (livros.size()-1);i++){
+        for(int i = 0; i < livros.size();i++){
             if(livros.get(i).getTitulo().equalsIgnoreCase(titulo)){
                 livros.remove(i);
                 JOptionPane.showMessageDialog(null, "LIVRO REMOVIDO !","SUCESSO", 1);
@@ -115,12 +125,11 @@ public class LibraryService {
     }
 
     //Método para alterar os dados do livro
-    public void alterLivro(String livro, String newTitulo, String newAutor, double price){
+    public void alterLivro(String livro, String[]op){
+        
         for(Livro lv : livros){
             if(lv.getTitulo().equalsIgnoreCase(livro)){
-                lv.setTitulo(newTitulo);
-                lv.setAutor(newAutor);
-                lv.setPrice(price);
+                lv = new IterationsMenu().newCredenciaisLivro(op, lv);
                 JOptionPane.showMessageDialog(null, "LIVRO ALTERADO !", "SUCESSO", 1);
                 return;
             }

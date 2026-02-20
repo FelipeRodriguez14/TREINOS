@@ -71,10 +71,14 @@ public class MainAdmin {
                 
                 break;
             case 1:
-                
+                String nome = JOptionPane.showInputDialog("NOME: ");
+
                 break;
             case 2:
-                
+                nome = JOptionPane.showInputDialog("NOME: ");
+                String senha = JOptionPane.showInputDialog( "SENHA: ");
+                users.createUserComum(nome, senha);
+                initHome();
                 break;
             case 3:
                 initHome();
@@ -135,9 +139,10 @@ public class MainAdmin {
                 op = msg.toArray(new String[0]);
                 msg.clear();
                 
-                String alterarLivro = JOptionPane.showInputDialog("QUAL O NOME DO LIVRO QUE DESEJA ALTERAR ?");
-                Livro novoLivro = new IterationsMenu().newCredenciaisLivro(op);
-                lib.alterLivro(alterarLivro, novoLivro.getTitulo(), novoLivro.getAutor(), novoLivro.getPrice());
+                String nomeLivro = JOptionPane.showInputDialog
+                ("QUAL O NOME DO LIVRO QUE DESEJA ALTERAR ?");
+
+                lib.alterLivro(nomeLivro, op);
                 initHome();
                 break;
             case 1:

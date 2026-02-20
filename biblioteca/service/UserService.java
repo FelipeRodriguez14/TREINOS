@@ -49,6 +49,42 @@ public class UserService {
         return new ListToString().userToString(users);
     }
 
+    //Adicionar Usuário
+    public void createUserComum(String nome, String senha){
+        for(User u : usuarios){
+            if(u.getNome().equalsIgnoreCase(nome)){
+                JOptionPane.showMessageDialog(null, "USUÁRIO JÁ CADASTRADO COM ESSE NOME", "ERRO", 0);
+                return;
+            }
+        }
+
+        //Somente para continuar a sequência de IDs cadastrados
+        int id = 1;
+        for(User u : usuarios){
+            if(u.getId() == id){
+                id++;
+            } else{
+                break;
+            }
+        }
+        
+        User newUser = new User(id,nome,senha, false);
+        usuarios.add(newUser);
+        JOptionPane.showMessageDialog(null, "USUÁRIO CADASTRADO !", "SUCESSO", 1);
+    }
+    
+    //Excluir Usuário
+    public void deleUserComum(String nome){
+        for(int i = 0; i < usuarios.size();i++){
+            if(usuarios.get(i).getNome().equalsIgnoreCase(nome)){
+                usuarios.remove(i);
+                JOptionPane.showMessageDialog(null, "USUÁRIO REMOVIDO");
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "USUÁRIO NÃO ENCONTRADO.", nome, 0);
+    }
+
     //Listar usuários por tipo de acesso.
     public String getUserType(boolean admin){
         List<User> users = new ArrayList<User>();
