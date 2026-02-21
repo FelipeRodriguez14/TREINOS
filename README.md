@@ -13,7 +13,8 @@ Este é o espaço onde centralizo e organizo meus projetos, exercícios e experi
 * **Exercícios:** Resoluções de lógica e desafios de programação.
 
 ## 🛠️ Tecnologias e Ferramentas
-*(Dica: Liste aqui as principais que você estuda, ex:)*
+
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
