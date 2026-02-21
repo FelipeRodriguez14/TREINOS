@@ -23,7 +23,7 @@ public class MainIniciar {
     public void init(){
         int typeMenu = 0;
 
-        String[] op = {" MENU USUARIO ", "MENU ADMINITRADOR", "SAIR"};
+        String[] op = {" MENU USUARIO ", "MENU ADMINISTRADOR", "SAIR"};
         typeMenu = JOptionPane.showOptionDialog(
             null,
             "ESCOLHA O MENU QUE DESEJA LOGAR",

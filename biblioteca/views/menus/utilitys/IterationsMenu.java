@@ -76,9 +76,10 @@ public class IterationsMenu {
         return novoAdmin;
     }
 
-    public User newCredenciaisAdmin(String[] op){
+    //Personalizando o menu e coletando os dados para atualizar as credenciais do administrador.
+    public User newCredenciaisAdmin(String[] op, boolean admin){
         JPanel painel = new JPanel(new GridLayout(0,1));
-
+            novoAdmin.setAdmin(admin);
             painel.add(new JLabel("INSIRA O NOVO NOME:"));
             painel.add(nomeField);
             novoAdmin.setNome(chooseJPanel(op, painel, "nome").getNome());

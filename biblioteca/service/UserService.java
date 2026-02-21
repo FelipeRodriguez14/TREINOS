@@ -31,7 +31,9 @@ public class UserService {
                 return user;
             }
         }
-        throw new UserNotFoundException("USUÁRIO NÃO ENCONTRADO");
+        JOptionPane.showMessageDialog(null, "USUÁRIO NÃO ENCONTRADO", "ERRO", 0);
+       return null;
+       
 
     }
 
@@ -50,7 +52,7 @@ public class UserService {
     }
 
     //Adicionar Usuário
-    public void createUserComum(String nome, String senha){
+    public void createUser(String nome, String senha, boolean admin){
         for(User u : usuarios){
             if(u.getNome().equalsIgnoreCase(nome)){
                 JOptionPane.showMessageDialog(null, "USUÁRIO JÁ CADASTRADO COM ESSE NOME", "ERRO", 0);
@@ -68,15 +70,15 @@ public class UserService {
             }
         }
         
-        User newUser = new User(id,nome,senha, false);
+        User newUser = new User(id,nome,senha, admin);
         usuarios.add(newUser);
         JOptionPane.showMessageDialog(null, "USUÁRIO CADASTRADO !", "SUCESSO", 1);
     }
     
     //Excluir Usuário
-    public void deleUserComum(String nome){
+    public void deleteUser(String nome, boolean admin){
         for(int i = 0; i < usuarios.size();i++){
-            if(usuarios.get(i).getNome().equalsIgnoreCase(nome)){
+            if(usuarios.get(i).getNome().equalsIgnoreCase(nome) && usuarios.get(i).getAdmin() == admin){
                 usuarios.remove(i);
                 JOptionPane.showMessageDialog(null, "USUÁRIO REMOVIDO");
                 return;
@@ -97,6 +99,27 @@ public class UserService {
             throw new UserNotFoundException("USUÁRIO NÃO ENCONTRADO");
         }
         return new ListToString().userToString(users);
+    }
+
+    //Função para alterar usuarios
+    public void alterUser(String nome,String newNome, String senha, boolean admin){
+        for(User usuario : usuarios ){
+            if(usuario.getNome().equalsIgnoreCase(nome) && usuario.getAdmin() == admin){
+                usuario.setNome(newNome);
+                usuario.setSenha(senha);
+                usuario.setAdmin(admin);
+
+                JOptionPane.showMessageDialog(
+                    null,
+                    "CREDENCIAIS ALTERADAS.",
+                    "SUCESSO",
+                    1
+                );
+                return;
+            } 
+        }
+        JOptionPane.showMessageDialog(null, "NÃO FOI ENCONTRADO ESSE TIPO DE USUÁRIO COM ESSE NOME", "ERRO", 0);
+
     }
 
     //Função que permite o administrador alterar o próprio usuário
@@ -123,8 +146,6 @@ public class UserService {
                 break;
             }
         }
-        
-        
     }
 
 

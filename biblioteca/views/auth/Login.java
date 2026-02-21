@@ -7,7 +7,6 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import biblioteca.entity.User;
-import biblioteca.exceptions.UserNotFoundException;
 import biblioteca.views.MenuServices;
 import biblioteca.views.menus.MainIniciar;
 import java.util.List;
@@ -57,7 +56,8 @@ public class Login {
                 }
             }
         }
-        throw new UserNotFoundException("USUÁRIO NÃO CADASTRADO. SOLICITE QUE UM ADMINISTRADOR CADASTRE VOCÊ.");
+        JOptionPane.showMessageDialog(null,"USUÁRIO NÃO CADASTRADO. SOLICITE QUE UM ADMINISTRADOR CADASTRE VOCÊ.");
+        new MainIniciar(false);
     }
 
     //Método que vai direcionar o próximo menu de acordo com o tipo de login do usuário.

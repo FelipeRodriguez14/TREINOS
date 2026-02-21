@@ -21,6 +21,7 @@ public class MainUser {
         msg.add("BUSCAR PELO AUTOR.");
         msg.add("BUSCAR PELO NOME.");
         msg.add("BUSCAR PELO PREÇO.");
+        msg.add("VER TODOS OS LIVROS");
         msg.add("SAIR");
         op = msg.toArray(new String[0]);
         msg.clear();
@@ -40,8 +41,12 @@ public class MainUser {
                 findPrice();
                 break;
             case 3:
-                goBack();
+                verAll();
+                initHome();
                 break;
+            case 4:
+                goBack();
+            break;
             default:
                 break;
         }
@@ -58,6 +63,12 @@ public class MainUser {
             initHome();
     }
 
+    //Menu para ver todos os ivros
+    private void verAll (){
+        JOptionPane.showMessageDialog(null,  lib.getAllLivros(), "LIVROS", 1);
+        //JOptionPane.showOptionDialog(null, painel, "TODOS OS LIVROS", 0, 0, null, op, lib);
+    }
+
     //Menu para buscar o livro pelo nome
     private void findNome(){
         String nome = JOptionPane.showInputDialog("ESCREVA O NOME DO LIVRO: ");
@@ -68,6 +79,7 @@ public class MainUser {
         if(action == 0) 
             initHome();
     }
+    
     //Menu para buscar o livro pelo preço
     private void findPrice(){
         Float price = Float.parseFloat(JOptionPane.showInputDialog(
@@ -81,7 +93,8 @@ public class MainUser {
         if(action == 0) 
             initHome();
     }
-    //Menu para voltar para a tela de início.
+    
+    //Método para voltar para a tela de início.
     private void goBack(){
         new MainIniciar(false);
     }

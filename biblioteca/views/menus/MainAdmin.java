@@ -68,16 +68,42 @@ public class MainAdmin {
 
         switch (action) {
             case 0:
-                
+                msg.add("OK");
+                msg.add("MANTER O ATUAL.");
+                msg.add("CANCELAR");
+                op = msg.toArray(new String[0]);
+                msg.clear();
+
+                String nomeUsuario = JOptionPane.showInputDialog("QUAL O NOME DO USUÁRIO? ");
+
+                if(users.getUser(nomeUsuario) != null){
+                    User newUser = new IterationsMenu().newCredenciaisAdmin(op,false);
+                    System.out.println(newUser.getNome());
+                    System.out.println(newUser.getSenha());
+                    System.out.println(newUser.getAdmin());
+
+                    users.alterUser
+                    (
+                        nomeUsuario, 
+                        newUser.getNome(),
+                        newUser.getSenha(),
+                        newUser.getAdmin()
+                    );
+                    initHome();
+                } else {
+                    initHome();
+                }
+    
                 break;
             case 1:
                 String nome = JOptionPane.showInputDialog("NOME: ");
-
+                users.deleteUser(nome, false);
+                initHome();
                 break;
             case 2:
                 nome = JOptionPane.showInputDialog("NOME: ");
                 String senha = JOptionPane.showInputDialog( "SENHA: ");
-                users.createUserComum(nome, senha);
+                users.createUser(nome, senha,false);
                 initHome();
                 break;
             case 3:
@@ -101,13 +127,42 @@ public class MainAdmin {
 
         switch (action) {
             case 0:
-                
+                msg.add("OK");
+                msg.add("MANTER O ATUAL.");
+                msg.add("CANCELAR");
+                op = msg.toArray(new String[0]);
+                msg.clear();
+
+                String nomeAdmin = JOptionPane.showInputDialog("QUAL O NOME DO AMINISTRADOR? ");
+
+                if(users.getUser(nomeAdmin) != null){
+                    User newUser = new IterationsMenu().newCredenciaisAdmin(op,true);
+                    System.out.println(newUser.getNome());
+                    System.out.println(newUser.getSenha());
+                    System.out.println(newUser.getAdmin());
+
+                    users.alterUser
+                    (
+                        nomeAdmin, 
+                        newUser.getNome(),
+                        newUser.getSenha(),
+                        newUser.getAdmin()
+                    );
+                    initHome();
+                } else {
+                    initHome();
+                }
                 break;
             case 1:
-                
+                String nome = JOptionPane.showInputDialog("NOME: ");
+                users.deleteUser(nome, true);
+                initHome();
                 break;
             case 2:
-                
+                nome = JOptionPane.showInputDialog("NOME: ");
+                String senha = JOptionPane.showInputDialog( "SENHA: ");
+                users.createUser(nome, senha, true);
+                initHome();
                 break;
             case 3:
                 initHome();
@@ -173,7 +228,7 @@ public class MainAdmin {
         msg.add("CANCELAR");
         op = msg.toArray(new String[0]);
         msg.clear();
-        User newUser = new IterationsMenu().newCredenciaisAdmin(op);
+        User newUser = new IterationsMenu().newCredenciaisAdmin(op,true);
         users.setMyUser
         (
             admin, 

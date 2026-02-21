@@ -9,8 +9,14 @@ public class LibraryService {
 
     private static List<Livro> livros = new ArrayList<Livro>();
 
+
+    
     //Construtor que inicia a biblioteca alimentada.
     public LibraryService(){}
+
+    public List<Livro> getLivrosObject(){
+        return livros;
+    }
 
     //Alimentar a biblioteca
     public void initStock(){
