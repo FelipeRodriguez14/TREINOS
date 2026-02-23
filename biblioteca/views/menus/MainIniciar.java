@@ -4,8 +4,10 @@ import javax.swing.JOptionPane;
 
 import biblioteca.views.auth.Login;
 
+//Classe que gerencia os menus
 public class MainIniciar {
 
+    //Esse parâmetro do coonstrutor é somente para dizer se a mensagem de boas - vindas deve ser disparada.
     public MainIniciar(boolean welcome){
         if(welcome){
             welcome();
@@ -16,10 +18,12 @@ public class MainIniciar {
         
     };
 
+    //Mensagem de boas vindas
     private void welcome(){
         JOptionPane.showMessageDialog(null, "BEM VINDO(A) A BIBLIOTECA", "WELCOME", 1);
     }
     
+    //Método que apresenta o menu com as opções de login.
     public void init(){
         int typeMenu = 0;
 

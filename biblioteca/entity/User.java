@@ -1,4 +1,10 @@
 package biblioteca.entity;
+
+/**Classe que define as entidades usuários. Em vez de criar um usuário comum e um administrador, eu 
+optei por criar um atributo do tipo boolean que define se o usuário é comum ou é um administrador, não 
+ficou tão ruim de trabalhar. Além disso o atributo 'ID' eu criei no final do desenvolvimento mas não utilizei,
+mas mesmo assim deixei ele no código. **/
+
 public class User {
     
     private String nome;

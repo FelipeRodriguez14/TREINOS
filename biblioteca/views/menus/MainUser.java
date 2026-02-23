@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 import biblioteca.service.LibraryService;
 import biblioteca.views.menus.utilitys.IterationsMenu;
 
+//Classe com a lógica de construção do menu de usuário comum.
+
 public class MainUser {
 
     public MainUser(){}

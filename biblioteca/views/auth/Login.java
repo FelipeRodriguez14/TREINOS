@@ -12,6 +12,8 @@ import biblioteca.views.menus.MainIniciar;
 import java.util.List;
 import biblioteca.service.UserService;
 
+//Essa é a classe da tela de Login.
+
 public class Login {
     private JPanel panel = new JPanel(new GridLayout(0,1));
     private JTextField campoUser = new JTextField();

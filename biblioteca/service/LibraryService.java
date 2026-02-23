@@ -5,15 +5,16 @@ import javax.swing.JOptionPane;
 import biblioteca.entity.Livro;
 import biblioteca.exceptions.LivroNotFoundException;
 import biblioteca.views.menus.utilitys.IterationsMenu;
+
+//Aqui está o CRUD dos livros.
+
 public class LibraryService {
 
     private static List<Livro> livros = new ArrayList<Livro>();
 
-
-    
-    //Construtor que inicia a biblioteca alimentada.
     public LibraryService(){}
 
+    //Método que retorna a lista de objetos livros.
     public List<Livro> getLivrosObject(){
         return livros;
     }
@@ -32,7 +33,10 @@ public class LibraryService {
         livros.add(new Livro("O Último Byte", "Isaac Asimov", true, 39.90));
     }
 
-    //Listar todos os livros disponíveis.
+    /*
+        Método que lista todos os livros disponíveis. 
+        A diferença desse método para o getLivrosObject é que esse retorna uma String.
+    */
     public String getAllLivros(){
         List<Livro> livrosDisponiveis = new ArrayList<Livro>();
         for(Livro livro : livros){
@@ -47,7 +51,9 @@ public class LibraryService {
         return new ListToString().libraryToString(livrosDisponiveis);
     }
 
-    //Retorna uma String com todos os livros encontrados
+    /*
+        Método para buscar um livro pelo nome
+    */
     public String getLivro(String titulo){
         List<Livro> livrosDisponiveis = new ArrayList<Livro>();
         for(Livro livro: livros){
@@ -62,7 +68,11 @@ public class LibraryService {
         return new ListToString().libraryToString(livrosDisponiveis);
     }
 
-    //Retorna o objeto Livro que foi encontrado
+    /* 
+        Também busca um livro pelo nome, porém retorna o próprio objeto.
+        Poderia ter mesclado com o método acima para fiar menos verboso.
+
+    */
     public Livro getLivroObject(String titulo){
         Livro livroEncontrado = new Livro();
         for(Livro livro: livros){

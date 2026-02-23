@@ -7,12 +7,14 @@ import biblioteca.entity.User;
 import biblioteca.exceptions.UserNotFoundException;
 import biblioteca.views.menus.MainIniciar;
 
+//Aqui está o CRUD dos usuários.
 public class UserService {
     
     private static List<User> usuarios = new ArrayList<User>();
 
     public UserService(){}
 
+    //Método que define e inicia usuários padrões.
     public void initStock(){
         usuarios.add(new User(1,"felipe","123", true));
         usuarios.add(new User(2,"bia","123", false));
@@ -24,7 +26,7 @@ public class UserService {
         return usuarios;
     }
 
-    //Buscar usuário por nome.
+    //Buscar usuário por nome. Retorna o objeto completo.
     public User getUser(String nome){
         for(User user : usuarios){
             if(user.getNome().equalsIgnoreCase(nome)){
@@ -33,11 +35,9 @@ public class UserService {
         }
         JOptionPane.showMessageDialog(null, "USUÁRIO NÃO ENCONTRADO", "ERRO", 0);
        return null;
-       
-
     }
 
-    //Buscar usuário por id.
+    //Buscar usuário por id. Coloquei essa funcionalidade mas não utilizei.
     public String getUserId(int id){
         List<User> users = new ArrayList<User>();
         for(User user : usuarios){
@@ -60,7 +60,7 @@ public class UserService {
             }
         }
 
-        //Somente para continuar a sequência de IDs cadastrados
+        //Lógica para continuar a sequência de IDs cadastrados
         int id = 1;
         for(User u : usuarios){
             if(u.getId() == id){
@@ -87,7 +87,7 @@ public class UserService {
         JOptionPane.showMessageDialog(null, "USUÁRIO NÃO ENCONTRADO.", nome, 0);
     }
 
-    //Listar usuários por tipo de acesso.
+    //Listar usuários por tipo de acesso. (Administrador ou usuário comum)
     public String getUserType(boolean admin){
         List<User> users = new ArrayList<User>();
         for(User user : usuarios){
@@ -122,7 +122,10 @@ public class UserService {
 
     }
 
-    //Função que permite o administrador alterar o próprio usuário
+    /**
+     * Função que permite o administrador alterar o próprio usuário (Poderia ter mesclado com a função acima, 
+     * mas decidi isso no final do desenvolvimento.
+     * **/
     public void setMyUser(User user, String nome, String senha, boolean admin){
         for(User usuario : usuarios ){
             if(

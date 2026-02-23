@@ -2,13 +2,12 @@
 
 Olá! Seja bem-vindo(a) ao meu repositório de estudos. 👋
 
-Este é o espaço onde centralizo e organizo meus projetos, exercícios e experimentos técnicos. O objetivo aqui é colocar os meus conhecimentos em prática e servir como uma biblioteca pessoal de consulta.
+Este é o espaço onde centralizo e organizo meus projetos, exercícios e experimentos técnicos. O objetivo aqui é colocar os meus conhecimentos em prática e servir como uma biblioteca pessoal de consulta, além poder contribuir com o meu conhecimento em programaçãp.
 
 ---
-
 ## 🎯 O que você encontrará por aqui?
 
-* **Projetos Práticos:** Aplicações reais desenvolvidas durante cursos e mentorias.
+* **Projetos Práticos:** Aplicações desenvolvidas durante cursos e mentorias.
 * **Laboratórios (Labs):** Testes de ferramentas, bibliotecas e novas tecnologias.
 * **Exercícios:** Resoluções de lógica e desafios de programação.
 

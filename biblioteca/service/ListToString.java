@@ -4,10 +4,16 @@ import java.util.List;
 import biblioteca.entity.Livro;
 import biblioteca.entity.User;
 
+/*
+    Essa classe foi criada para trsnformar as Listas de objetos em String personalizadas
+    para caber dentro das telas da JOptionPane.
+
+*/
 public class ListToString {
 
     int cont = 0;
 
+    //Método que tranforma uma lista de usuários em string.
     public String userToString (List<?> list){
         StringBuilder sb = new StringBuilder();
         sb.append("CADASTROS ENCONTRADOS\n\n");
@@ -22,6 +28,7 @@ public class ListToString {
         return sb.toString();
     }
 
+    //Método que tranforma uma lista de livros em string.
     public String libraryToString (List<?> list){
         StringBuilder sb = new StringBuilder();
         sb.append("LIVROS DISPONÍVEIS\n\n");
@@ -35,9 +42,6 @@ public class ListToString {
         }
         this.cont = 0;
         return sb.toString();
-        
     }
-
-    
 
 }

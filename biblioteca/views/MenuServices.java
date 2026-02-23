@@ -5,6 +5,7 @@ import biblioteca.views.menus.MainAdmin;
 import biblioteca.views.menus.MainIniciar;
 import biblioteca.views.menus.MainUser;
 
+// Classe que gerencia os menus que serão utilizados.
 public class MenuServices{
     private static User user;
     public MenuServices(){}
@@ -13,17 +14,17 @@ public class MenuServices{
         user = logado;
     }
 
-    //Direcionamento pra a tela do menu principal
+    //Direcionamento para o menu principal
     public void menuIniciar(){
         new MainIniciar(true);
     }
 
-    //Direcionando para o menu do usuário
+    //Direcionamento para o menu do usuário
     public void menuUser(){
         new MainUser().initHome();
     }
 
-    //Direcionando para o menu do admin
+    //Direcionamento para o menu do admin
     public void menuAdmin(){
         new MainAdmin(user).initHome();
     }

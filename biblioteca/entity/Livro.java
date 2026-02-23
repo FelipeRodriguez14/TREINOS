@@ -1,4 +1,6 @@
 package biblioteca.entity;
+
+//Essa é a classe que define a entidade livro. Sempre matendo o encapsulamento.
 public class Livro{
 
     private String titulo;

@@ -9,6 +9,7 @@ import biblioteca.service.UserService;
 import biblioteca.views.menus.utilitys.IterationsMenu;
 import biblioteca.entity.Livro;
 
+//Classe com a lógica de construção do menu de administrador.
 public class MainAdmin {
     private User admin = new User();
     private IterationsMenu menuIterativo = new IterationsMenu();
@@ -20,6 +21,7 @@ public class MainAdmin {
 
     public MainAdmin(){}
 
+    //Criei esse construtor com parâmetro para alguns casos específicos.
     public MainAdmin(User user){
         this.admin = user;
     }
@@ -55,7 +57,7 @@ public class MainAdmin {
         }
     }
     
-    //Menu para tratar os usuários do sistema
+    //Menu para operar os usuários do sistema
     private void usuarios(){
         msg.add("ALTERAR USUÁRIO");
         msg.add("EXCLUIR USUÁRIO");
@@ -114,7 +116,7 @@ public class MainAdmin {
         }
     }
 
-    //Menu para tratar os outros admins do sistema
+    //Menu para operar os outros admins do sistema
     private void admins(){
         msg.add("ALTERAR ADMINISTRADOR");
         msg.add("EXCLUIR ADMINISTRADOR");
@@ -172,7 +174,7 @@ public class MainAdmin {
         }
     }
     
-    //Menu para tratar os livros do sistema
+    //Menu para operar os livros do sistema
     private void livros(){
         msg.add("ALTERAR LIVRO");
         msg.add("EXCLUIR LIVRO");
