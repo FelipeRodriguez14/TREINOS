@@ -1,0 +1,155 @@
+package biblioteca.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import biblioteca.entity.User;
+import biblioteca.exceptions.UserNotFoundException;
+import biblioteca.views.menus.MainIniciar;
+
+//Aqui está o CRUD dos usuários.
+public class UserService {
+    
+    private static List<User> usuarios = new ArrayList<User>();
+
+    public UserService(){}
+
+    //Método que define e inicia usuários padrões.
+    public void initStock(){
+        usuarios.add(new User(1,"felipe","123", true));
+        usuarios.add(new User(2,"bia","123", false));
+        usuarios.add(new User(3,"ana","123", false));
+    }
+
+    //Listar todos os usuários.
+    public List<User> getAllUsers(){
+        return usuarios;
+    }
+
+    //Buscar usuário por nome. Retorna o objeto completo.
+    public User getUser(String nome){
+        for(User user : usuarios){
+            if(user.getNome().equalsIgnoreCase(nome)){
+                return user;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "USUÁRIO NÃO ENCONTRADO", "ERRO", 0);
+       return null;
+    }
+
+    //Buscar usuário por id. Coloquei essa funcionalidade mas não utilizei.
+    public String getUserId(int id){
+        List<User> users = new ArrayList<User>();
+        for(User user : usuarios){
+            if(user.getId() == id){
+                users.add(user);
+            }
+        }
+        if(users.isEmpty()){
+            throw new UserNotFoundException("USUÁRIO NÃO ENCONTRADO");
+        }
+        return new ListToString().userToString(users);
+    }
+
+    //Adicionar Usuário
+    public void createUser(String nome, String senha, boolean admin){
+        for(User u : usuarios){
+            if(u.getNome().equalsIgnoreCase(nome)){
+                JOptionPane.showMessageDialog(null, "USUÁRIO JÁ CADASTRADO COM ESSE NOME", "ERRO", 0);
+                return;
+            }
+        }
+
+        //Lógica para continuar a sequência de IDs cadastrados
+        int id = 1;
+        for(User u : usuarios){
+            if(u.getId() == id){
+                id++;
+            } else{
+                break;
+            }
+        }
+        
+        User newUser = new User(id,nome,senha, admin);
+        usuarios.add(newUser);
+        JOptionPane.showMessageDialog(null, "USUÁRIO CADASTRADO !", "SUCESSO", 1);
+    }
+    
+    //Excluir Usuário
+    public void deleteUser(String nome, boolean admin){
+        for(int i = 0; i < usuarios.size();i++){
+            if(usuarios.get(i).getNome().equalsIgnoreCase(nome) && usuarios.get(i).getAdmin() == admin){
+                usuarios.remove(i);
+                JOptionPane.showMessageDialog(null, "USUÁRIO REMOVIDO");
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "USUÁRIO NÃO ENCONTRADO.", nome, 0);
+    }
+
+    //Listar usuários por tipo de acesso. (Administrador ou usuário comum)
+    public String getUserType(boolean admin){
+        List<User> users = new ArrayList<User>();
+        for(User user : usuarios){
+            if(user.getAdmin() == admin){
+                users.add(user);
+            }
+        }
+        if(users.isEmpty()){
+            throw new UserNotFoundException("USUÁRIO NÃO ENCONTRADO");
+        }
+        return new ListToString().userToString(users);
+    }
+
+    //Função para alterar usuarios
+    public void alterUser(String nome,String newNome, String senha, boolean admin){
+        for(User usuario : usuarios ){
+            if(usuario.getNome().equalsIgnoreCase(nome) && usuario.getAdmin() == admin){
+                usuario.setNome(newNome);
+                usuario.setSenha(senha);
+                usuario.setAdmin(admin);
+
+                JOptionPane.showMessageDialog(
+                    null,
+                    "CREDENCIAIS ALTERADAS.",
+                    "SUCESSO",
+                    1
+                );
+                return;
+            } 
+        }
+        JOptionPane.showMessageDialog(null, "NÃO FOI ENCONTRADO ESSE TIPO DE USUÁRIO COM ESSE NOME", "ERRO", 0);
+
+    }
+
+    /**
+     * Função que permite o administrador alterar o próprio usuário (Poderia ter mesclado com a função acima, 
+     * mas decidi isso no final do desenvolvimento.
+     * **/
+    public void setMyUser(User user, String nome, String senha, boolean admin){
+        for(User usuario : usuarios ){
+            if(
+                usuario.getNome().equalsIgnoreCase(user.getNome()) &&
+                usuario.getSenha().equals(user.getSenha()) &&
+                usuario.getAdmin() == user.getAdmin()
+            ){
+                usuario.setNome(nome);
+                usuario.setSenha(senha);
+                usuario.setAdmin(admin);
+
+                JOptionPane.showMessageDialog(
+                    null,
+                    "CREDENCIAIS ALTERADAS. O SISTEMA IRÁ PARA A TELA DE LOGIN.\n\n" +
+                    "FAÇA LOGIN COM AS NOVAS CREDENCIAIS."
+                    ,
+                    senha,
+                    0
+                    );
+                new MainIniciar(false);
+                break;
+            }
+        }
+    }
+
+
+}
